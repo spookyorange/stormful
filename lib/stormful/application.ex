@@ -14,6 +14,8 @@ defmodule Stormful.Application do
       {Phoenix.PubSub, name: Stormful.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Stormful.Finch},
+      # Start the Queue Processor for background jobs
+      {Stormful.Queue.Processor, []},
       # Start a worker by calling: Stormful.Worker.start_link(arg)
       # {Stormful.Worker, arg},
       # Start to serve requests, typically the last entry

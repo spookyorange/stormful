@@ -43,6 +43,16 @@ defmodule StormfulWeb.Router do
       live_dashboard "/dashboard", metrics: StormfulWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+
+    scope "/api", StormfulWeb do
+      pipe_through :api
+
+      # Health check endpoints for monitoring (available in all environments)
+      get "/health", HealthController, :index
+      get "/health/queue", HealthController, :queue
+      get "/health/ping", HealthController, :ping
+      get "/health/metrics", HealthController, :metrics
+    end
   end
 
   ## Authentication routes
